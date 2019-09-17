@@ -1,0 +1,12 @@
+
+*.lock
+*.ide-shm
+*.ide
+*.ide-wal
+*.force
+*.cache
+.vs/*
+bin/
+obj/
+
+
