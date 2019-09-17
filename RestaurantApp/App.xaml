@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="RestaurantApp.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:RestaurantApp.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Application.Resources>
+        <Color x:Key="Yellow" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#ffc426</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="Background" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#c4190f</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="LigtGray" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#f3f3f3</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="DarkRed" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#d70000</x:String>
+            </x:Arguments>
+        </Color>
+        <Style x:Key="SmallLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontFamily" Value="Clear Sans" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+        <converters:BoolToHeaderColorConverter x:Key="HeaderTextColorConverter" />
+        <converters:BoolToBarColorConverter x:Key="BarColorConverter" />
+
+    </Application.Resources>
+</Application>

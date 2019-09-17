@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="RestaurantApp.Pages.Settings.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    BackgroundColor="{StaticResource LigtGray}"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="30"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="EndAndExpand">
+            <Button
+                BackgroundColor="{StaticResource Yellow}"
+                Command="{Binding LogOutCommand}"
+                CornerRadius="8"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalOptions="FillAndExpand"
+                Text="LOG OUT"
+                TextColor="Gray"
+                VerticalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BasePage>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="RestaurantApp.Pages.Menu.ItemDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RestaurantApp.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    BackgroundColor="{StaticResource LigtGray}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:ToolBar
+                Grid.Row="0"
+                BackgroundColor="White"
+                CloseButtonCommand="{Binding NavigationButtonCommand}"
+                CloseIcon="leftarrow"
+                HeightRequest="56"
+                ToolbarTitle="{Binding CurrentItem.Name}" />
+            <ScrollView Grid.Row="1">
+                <StackLayout
+                    Padding="20"
+                    BackgroundColor="{StaticResource LigtGray}"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="20">
+                    <StackLayout
+                        Padding="20"
+                        BackgroundColor="White"
+                        HeightRequest="300"
+                        Spacing="0">
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="Domine-Bold"
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding CurrentItem.Title}"
+                            TextColor="Black"
+                            VerticalOptions="Start" />
+                        <Image
+                            HeightRequest="180"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="{Binding CurrentItem.Image}"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="180" />
+                    </StackLayout>
+                    <Button
+                        BackgroundColor="{StaticResource Yellow}"
+                        Command="{Binding PlaceOrderCommand}"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HorizontalOptions="FillAndExpand"
+                        Text="PLACE ORDER"
+                        TextColor="Gray" />
+                    <Button
+                        BackgroundColor="{StaticResource Yellow}"
+                        Command="{Binding AddToFavoriteCommand}"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HorizontalOptions="FillAndExpand"
+                        Text="ADD TO FAVORITE"
+                        TextColor="Gray" />
+                    <StackLayout
+                        x:Name="item"
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Image
+                            HeightRequest="80"
+                            HorizontalOptions="Start"
+                            Source="{Binding CurrentItem.Image}"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="Domine-Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding CurrentItem.Name}"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

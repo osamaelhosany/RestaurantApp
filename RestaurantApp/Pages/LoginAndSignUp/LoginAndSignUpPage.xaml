@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage
+    x:Class="RestaurantApp.Pages.LoginAndSignUp.LoginAndSignUpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns:behaviors="clr-namespace:RestaurantApp.Behaviors"
+    xmlns:controls="clr-namespace:RestaurantApp.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource Background}" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{StaticResource DarkRed}"
+                ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Spacing="0">
+                    <Label
+                        x:Name="loginlabel"
+                        BackgroundColor="DarkRed"
+                        Font="Domine-Bold"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="LOGIN"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LabelHeaderRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView
+                        x:Name="LoginUnderLine"
+                        BackgroundColor="{StaticResource Yellow}"
+                        HeightRequest="5"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End" />
+
+                </StackLayout>
+                <StackLayout Grid.Column="1" Spacing="0">
+                    <Label
+                        x:Name="signuplabel"
+                        BackgroundColor="DarkRed"
+                        Font="Domine-Bold"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="REGISTER"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LabelHeaderRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView
+                        x:Name="RegisterUnderLine"
+                        BackgroundColor="{StaticResource Yellow}"
+                        HeightRequest="5"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="False"
+                        VerticalOptions="End" />
+                </StackLayout>
+                <BoxView
+                    HeightRequest="25"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="Center"
+                    WidthRequest="1"
+                    Color="Gray" />
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.3*" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        Source="logo"
+                        WidthRequest="200" />
+                </StackLayout>
+                <StackLayout
+                    x:Name="stackinput"
+                    Grid.Row="1"
+                    Margin="35,40,35,0"
+                    Spacing="8"
+                    VerticalOptions="Center">
+                    <controls:ImageEntry
+                        x:Name="name"
+                        FontFamily="Lato-Regular"
+                        ImageAlignment="Right"
+                        ImageHeight="24"
+                        ImageWidth="24"
+                        Placeholder="Username"
+                        PlaceholderColor="Gray"
+                        ReturnType="Next"
+                        Text="{Binding User.UserName}">
+                        <controls:ImageEntry.Behaviors>
+                            <behaviors:EntryTextValidatorBehavior />
+                        </controls:ImageEntry.Behaviors>
+                    </controls:ImageEntry>
+                    <controls:ImageEntry
+                        x:Name="email"
+                        FontFamily="Lato-Regular"
+                        ImageAlignment="Right"
+                        ImageHeight="24"
+                        ImageWidth="24"
+                        IsVisible="False"
+                        Placeholder="Email"
+                        PlaceholderColor="Gray"
+                        ReturnType="Next"
+                        Text="{Binding User.Email}">
+                        <controls:ImageEntry.Behaviors>
+                            <behaviors:EntryEmailValidatorBehavior />
+                        </controls:ImageEntry.Behaviors>
+                    </controls:ImageEntry>
+                    <Entry
+                        x:Name="pass"
+                        FontFamily="Lato-Regular"
+                        HeightRequest="55"
+                        IsPassword="true"
+                        Placeholder="Password"
+                        PlaceholderColor="Gray"
+                        ReturnType="Go"
+                        Text="{Binding User.Password}"
+                        TextColor="White" />
+                </StackLayout>
+                <StackLayout
+                    x:Name="loginbutton"
+                    Grid.Row="2"
+                    Margin="25,20"
+                    IsVisible="True"
+                    Spacing="20">
+                    <Button
+                        BackgroundColor="{StaticResource Yellow}"
+                        Command="{Binding LogInCommand}"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Log in"
+                        TextColor="Gray" />
+                    <Label
+                        Font="Domine-Bold"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Forget Password?"
+                        TextColor="{StaticResource Yellow}" />
+                </StackLayout>
+                <StackLayout
+                    x:Name="registerbutton"
+                    Grid.Row="2"
+                    Margin="25,0"
+                    IsVisible="False"
+                    Spacing="20">
+                    <Button
+                        BackgroundColor="{StaticResource Yellow}"
+                        Command="{Binding SignUpCommand}"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Register"
+                        TextColor="Gray" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

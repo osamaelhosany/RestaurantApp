@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage
+    x:Class="RestaurantApp.Pages.Home.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns:customControls="clr-namespace:RestaurantApp.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:panCardView="clr-namespace:PanCardView;assembly=PanCardView"
+    mc:Ignorable="d"
+     BackgroundColor="{StaticResource LigtGray}">
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource LigtGray}" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="0.3*" />
+            </Grid.RowDefinitions>
+            <customControls:ToolBar
+                Grid.Row="0"
+                BackgroundColor="White"
+                CloseIcon="logo"
+                HeightRequest="56"
+                ToolbarRightText="ORDER"
+                ToolbarTitle="{Binding Title}" />
+            <panCardView:CarouselView
+                Grid.Row="1"
+                Margin="0"
+                IsCyclical="False"
+                IsPanInteractionEnabled="false"
+                IsRightToLeftFlowDirectionEnabled="True"
+                ItemsSource="{Binding OfferList}"
+                SelectedIndex="{Binding SelectedIndex}"
+                VerticalSwipeThresholdDistance="4000">
+                <panCardView:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0" Padding="0">
+                            <Image Aspect="AspectFill" Source="{Binding Image}" />
+                        </Grid>
+                    </DataTemplate>
+                </panCardView:CarouselView.ItemTemplate>
+            </panCardView:CarouselView>
+            <customControls:CarouselIndicators
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                IndicatorHeight="14"
+                IndicatorWidth="14"
+                ItemsSource="{Binding OfferList}"
+                Position="{Binding SelectedIndex}"
+                Rotation="180"
+                Margin="0,5"
+                SelectedIndicator="selecteddot.png"
+                UnselectedIndicator="unselecteddot.png"
+                VerticalOptions="End" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,5,0,0"
+                BackgroundColor="Transparent"
+                ColumnSpacing="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" BackgroundColor="{StaticResource DarkRed}">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Yellow}"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.Text>
+                            TRACK
+                            ORDER
+                        </Label.Text>
+                    </Label>
+                </StackLayout>
+                <StackLayout Grid.Column="1" BackgroundColor="{StaticResource DarkRed}">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Yellow}"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.Text>
+                            PLACE
+                            ORDER
+                        </Label.Text>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

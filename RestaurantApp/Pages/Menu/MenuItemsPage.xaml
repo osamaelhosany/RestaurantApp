@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="RestaurantApp.Pages.Menu.MenuItemsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RestaurantApp.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    x:Name="RootItem"
+    BackgroundColor="{StaticResource LigtGray}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:ToolBar
+                Grid.Row="0"
+                BackgroundColor="White"
+                CloseButtonCommand="{Binding NavigationButtonCommand}"
+                CloseIcon="leftarrow"
+                HeightRequest="56"
+                ToolbarTitle="{Binding Title}" />
+            <controls:HorizonatalListViewControl
+                x:Name="Headerlist"
+                Grid.Row="1"
+                BackgroundColor="#750916"
+                HeightRequest="60"
+                ItemsSource="{Binding CategoryList}"
+                ListOrientation="Horizontal"
+                SelectedCommand="{Binding OnHeaderSelectedCommand}"
+                VerticalOptions="Start"
+                scrollBarVisibility="Never">
+                <controls:HorizonatalListViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="180">
+                                <StackLayout
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="FillAndExpand"
+                                    Spacing="0"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="180">
+                                    <Label
+                                        BackgroundColor="Transparent"
+                                        Font="Domine"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="{Binding IsSelected, Converter={StaticResource HeaderTextColorConverter}}"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center" />
+                                    <BoxView
+                                        x:Name="UnderLineBoxView"
+                                        HeightRequest="5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Color="{Binding IsSelected, Converter={StaticResource BarColorConverter}}" />
+                                </StackLayout>
+                                <BoxView
+                                    HeightRequest="25"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="2"
+                                    Color="Gray" />
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </controls:HorizonatalListViewControl.ItemTemplate>
+            </controls:HorizonatalListViewControl>
+            <ListView
+                x:Name="itemslistview"
+                Grid.Row="2"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemsSource="{Binding ItemsList}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="5,0">
+                                <StackLayout
+                                    x:Name="item"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="FillAndExpand">
+                                    <Image
+                                        HeightRequest="120"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding Image}"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="120" />
+                                    <StackLayout
+                                        HorizontalOptions="StartAndExpand"
+                                        Orientation="Vertical"
+                                        Spacing="5"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontFamily="Domine-Bold"
+                                            FontSize="14"
+                                            Text="{Binding Name}"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontFamily="Domine-Bold"
+                                            FontSize="12"
+                                            Text="{Binding Price, StringFormat='From L.E.{0:F2}'}"
+                                            TextColor="Gray" />
+                                    </StackLayout>
+                                    <Image
+                                        Margin="0,0,25,0"
+                                        HeightRequest="14"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="rightarrow"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="14" />
+                                </StackLayout>
+                                <BoxView
+                                    x:Name="UnderLineBoxView"
+                                    HeightRequest="3"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End"
+                                    Color="LightGray" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        BindingContext="{Binding Source={x:Reference itemslistview}, Path=BindingContext}"
+                                        Command="{Binding OnSelectedItemCommand}"
+                                        CommandParameter="{Binding Source={x:Reference item}, Path=BindingContext}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

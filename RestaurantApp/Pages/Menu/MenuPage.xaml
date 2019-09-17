@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="RestaurantApp.Pages.Menu.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RestaurantApp.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    BackgroundColor="{StaticResource LigtGray}"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource LigtGray}" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.22*" />
+                <RowDefinition Height="0.78*" />
+            </Grid.RowDefinitions>
+            <controls:ToolBar
+                Grid.Row="0"
+                BackgroundColor="White"
+                HeightRequest="56"
+                ToolbarTitle="{Binding Title}" />
+            <StackLayout
+                Grid.Row="1"
+                Padding="10"
+                Margin="0,0,0,3"
+                BackgroundColor="#333333"
+                Orientation="Vertical"
+                Spacing="3">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="End"
+                    Text="BREAKFAST MENU"
+                    TextColor="#848484"
+                    VerticalOptions="Start" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalOptions="End"
+                    Text="Breakfast Menu Hours"
+                    TextColor="White" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    Text="7:00AM - 11:30AM(Last Order 11:15Am)"
+                    TextColor="{StaticResource Yellow}" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalOptions="End"
+                    Text="Regular Menu Hours"
+                    TextColor="White" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    Text="11:30AM - 7:00AM(Last Order 11:15Am)"
+                    TextColor="{StaticResource Yellow}" />
+            </StackLayout>
+            <ScrollView
+                Grid.Row="2"
+                Padding="5,0,5,5"
+                HorizontalOptions="Fill"
+                VerticalScrollBarVisibility="Never">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <controls:GridList
+                        x:Name="categorylist"
+                        HorizontalOptions="CenterAndExpand"
+                        ItemsOnRow="2"
+                        ItemsSource="{Binding CategoryList}"
+                        Spacing="8"
+                        VerticalOptions="FillAndExpand">
+                        <controls:GridList.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame
+                                        x:Name="listitem"
+                                        Margin="2,0"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="Transparent"
+                                        CornerRadius="0"
+                                        HasShadow="False"
+                                        HeightRequest="180"
+                                        IsClippedToBounds="True"
+                                        WidthRequest="180">
+                                        <Grid x:Name="item" BackgroundColor="White">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.8*" />
+                                                <RowDefinition Height="0.2*" />
+                                            </Grid.RowDefinitions>
+                                            <Image
+                                                Grid.Row="0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="24"
+                                                Source="{Binding Image}"
+                                                WidthRequest="24" />
+                                            <StackLayout Grid.Row="1" HorizontalOptions="Center">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="16"
+                                                    Text="{Binding Name}"
+                                                    TextColor="Black" />
+                                            </StackLayout>
+
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    BindingContext="{Binding Source={x:Reference categorylist}, Path=BindingContext}"
+                                                    Command="{Binding OnSelectedCategoryCommand}"
+                                                    CommandParameter="{Binding Source={x:Reference item}, Path=BindingContext}" />
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </Frame>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:GridList.ItemTemplate>
+                    </controls:GridList>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="RestaurantApp.Controls.ToolBar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="RootItem">
+    <Image
+        Margin="15,0"
+        HeightRequest="20"
+        HorizontalOptions="StartAndExpand"
+        Source="{Binding CloseIcon, Source={x:Reference RootItem}}"
+        VerticalOptions="Center"
+        WidthRequest="20">
+        <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding CloseButtonCommand, Source={x:Reference RootItem}}" />
+        </Image.GestureRecognizers>
+    </Image>
+    <Label
+        Margin="45,0,0,0"
+        FontAttributes="Bold"
+        FontSize="20"
+        HorizontalOptions="Start"
+        Text="{Binding ToolbarTitle, Source={x:Reference RootItem}}"
+        TextColor="Black"
+        VerticalOptions="Center" />
+    <Image
+        Margin="20,10"
+        HeightRequest="20"
+        HorizontalOptions="End"
+        Source="{Binding ToolbarIcon, Source={x:Reference RootItem}}"
+        VerticalOptions="Center"
+        WidthRequest="20">
+        <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ToolbarClickCommand, Source={x:Reference RootItem}}" />
+        </Image.GestureRecognizers>
+    </Image>
+    <Label
+        Margin="20,0,10,0"
+        FontAttributes="Bold"
+        FontSize="16"
+        HorizontalOptions="End"
+        Style="{StaticResource SmallLabelStyle}"
+        Text="{Binding ToolbarRightText, Source={x:Reference RootItem}}"
+        TextColor="{StaticResource DarkRed}"
+        VerticalOptions="Center">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ToolbarClickCommand, Source={x:Reference RootItem}}" />
+        </Label.GestureRecognizers>
+    </Label>
+</Grid>
