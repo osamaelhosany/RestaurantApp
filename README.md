@@ -2,13 +2,13 @@
  RestaurantApp-Xamarin Forms 
  
 ## OverView
-This is a base project for Restaurant App With MVVM & Sqlite local Sync with Azure 
+A very pretty Restaurant application built with Xamarin (MVVM & Sqlite local Sync with Azure) 
 - Login & Register
 - Home Page
 - Items Page 
 - Item Details Page
 
-Nuget Packages:
+## Built with:
 
 - [Microsoft.Azure.Mobile.Client](https://github.com/Azure/azure-mobile-apps-net-client)
 - [Microsoft.Azure.Mobile.Client.SQLiteStore](https://github.com/Azure/azure-mobile-apps-net-client)
